@@ -1,0 +1,35 @@
+@import 'webapp/style/config';
+
+* {
+  box-sizing: border-box;
+}
+
+body,
+html {
+  height: 100%;
+  margin: unset;
+  padding: unset;
+}
+
+body {
+  background-color: $colorBackground;
+  color: $colorTextBody;
+  font-family: $fontFamily;
+  font-size: $fontM;
+
+  // #main
+  > :first-child {
+    padding: 12px;
+    display: grid;
+    justify-items: center;
+  }
+}
+
+button,
+input,
+textarea {
+  color: $colorTextBody;
+  font-family: $fontFamily;
+  font-size: $fontM;
+  outline: unset;
+}

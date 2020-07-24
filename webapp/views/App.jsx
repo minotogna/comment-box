@@ -1,20 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
+
+import CommentBox from '@webapp/components/CommentBox'
 
 import style from './App.scss'
 
 const App = () => {
-  const [message, setMessage] = useState('')
-
-  useEffect(() => {
-    // simple api fetch
-    fetch('/api/welcome')
-      .then((response) => response.json())
-      .then((jsonResponse) => setMessage(jsonResponse))
-  }, [])
-
   return (
     <div className={style.app}>
-      <h1>{message}</h1>
+      <h2>Please leave a comment</h2>
+      <CommentBox />
     </div>
   )
 }
