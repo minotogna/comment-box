@@ -1,9 +1,8 @@
 const { Router } = require('express')
 
-const router = Router()
+const { UserApi } = require('./modules/user')
 
-router.get('/welcome', (req, res) => {
-  res.json('Welcome To React Express Starter Kit!')
-})
+const router = Router()
+UserApi.init(router)
 
 module.exports = router
