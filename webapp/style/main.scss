@@ -33,3 +33,16 @@ textarea {
   font-size: $fontM;
   outline: unset;
 }
+
+a,
+button {
+  background-color: unset;
+  border: unset;
+  cursor: pointer;
+  padding: 4px 8px;
+  transition: all 0.25s;
+
+  &:hover {
+    background-color: darken($colorBackground, 3%);
+  }
+}

@@ -1,0 +1,16 @@
+@import 'webapp/style/config';
+
+.userMentions {
+  position: absolute;
+  display: grid;
+  min-width: 180px;
+  background: linear-gradient(
+    180deg,
+    white 0%,
+    lighten($colorBackground, 2.5%) 5%,
+    lighten($colorBackground, 2%) 20%,
+    lighten($colorBackground, 1%) 60%,
+    $colorBackground 100%
+  );
+  box-shadow: 0px 10px 10px -5px darken($colorBackground, 5%);
+}
