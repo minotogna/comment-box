@@ -5,7 +5,7 @@ import DOMUtils from '@webapp/utils/dom'
  *
  * @param {Element} target - The target element to extract the mention from.
  *
- * @returns {string|null} - Returns the user mentions if text starts with @, null otherwise.
+ * @returns {{mention:string, indexStart:number, indexEnd:number}|null} - Returns the user mentions if text starts with @, null otherwise.
  */
 const getMention = ({ target }) => {
   const { selectionStart, value } = target
@@ -21,7 +21,10 @@ const getMention = ({ target }) => {
   for (; indexStart >= 0; indexStart -= 1) {
     const triggerChar = value[indexStart] === '@'
     // index start found
-    if (triggerChar && (indexStart === 0 || isBlank(indexStart - 1))) break
+    if (triggerChar && (indexStart === 0 || isBlank(indexStart - 1))) {
+      indexStart += 1
+      break
+    }
     // index start not found
     if (isBlank(indexStart) || (indexStart === 0 && !triggerChar)) return null
   }
@@ -30,7 +33,11 @@ const getMention = ({ target }) => {
     if (isBlank(indexEnd)) break
   }
 
-  return value.substring(indexStart + 1, indexEnd)
+  return {
+    indexStart,
+    indexEnd,
+    mention: value.substring(indexStart, indexEnd),
+  }
 }
 
 /**
@@ -46,16 +53,16 @@ export const onKeyUp = ({ userMentionsProps, setUserMentionsProps }) => (event) 
   const { target } = event
   const mention = getMention({ target })
 
-  if (mention !== null && userMentionsProps) {
+  if (mention === null) {
+    // close userMentions dialog
+    setUserMentionsProps(null)
+  } else if (userMentionsProps) {
     // userMentions dialog already opened: need to pass the updated mention only
-    setUserMentionsProps((userMentionsPrev) => ({ ...userMentionsPrev, mention }))
-  } else if (mention !== null && !userMentionsProps) {
+    setUserMentionsProps((userMentionsPrev) => ({ ...userMentionsPrev, mention: mention.mention }))
+  } else if (!userMentionsProps) {
     // opening userMentions dialog for the first time: need to pass left, top coordinates and mention
     const { selectionStart } = target
     const { top, left } = DOMUtils.getCaretCoordinates(target, selectionStart)
-    setUserMentionsProps({ left: left - 10, top: top + 20, mention })
-  } else {
-    // close userMentions dialog
-    setUserMentionsProps(null)
+    setUserMentionsProps({ left: left - 10, top: top + 20, ...mention })
   }
 }
