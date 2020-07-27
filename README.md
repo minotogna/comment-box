@@ -1,24 +1,34 @@
-# React Express Starter
-
-Starter kit for full stack app with React and express
+# CommentBox widget with UserMentions
 
 > It includes eslint, prettier, babel, webpack
 
 **FrontEnd**  
-react, react-router, css modules
+react, react-router, redux, redux-observable, rxjs, css modules, scss
 
 **Back-end**  
 node, express, cookie-parser, morgan, debug, api router
 
-## Quick start
+## Requirements
 
+**node ^12.16.0**  
+**yarn ^1.10.1**
+
+## Run the application locally
+
+#### Install the dependencies before running the app
 ```shell script
-# Install dependencies
 yarn install
+```
 
-# Run dev version locally
+#### Run the development version
+```shell script
 yarn watch
+```
 
-# Run prod version locally
+#### Run the production version
+```shell script
+yarn build
 yarn start
 ```
+
+Open the browser at http://localhost:3000

@@ -8,7 +8,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 const nodeEnv = process.env.NODE_ENV
-const isProduction = nodeEnv === 'production'
+const isDevelopment = nodeEnv === 'development'
 const distDir = path.resolve(__dirname, 'dist')
 
 // Remove mini-css-extract-plugin log spam
@@ -86,7 +86,7 @@ const webPackConfig = {
             options: {
               modules: {
                 exportGlobals: true,
-                localIdentName: `${isProduction ? '' : '[path][name]__[local]-'}[hash:base64:5]`,
+                localIdentName: `${isDevelopment ? '[path][name]__[local]-' : ''}[hash:base64:5]`,
               },
             },
           },

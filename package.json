@@ -10,7 +10,7 @@
   "scripts": {
     "build": "webpack --display-error-details -p",
     "build:watch": "webpack --display-error-details --watch",
-    "start": "cross-env NODE_ENV=production npm run build && node server/bin/www",
+    "start": "node server/bin/www",
     "start:watch": "nodemon server/bin/www",
     "watch": "cross-env NODE_ENV=development DEBUG=react-express-starter:* npm-run-all --parallel build:watch start:watch"
   },
