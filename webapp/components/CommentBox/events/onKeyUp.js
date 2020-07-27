@@ -50,10 +50,13 @@ const getMention = ({ target }) => {
  * @returns {Function} - Event handler.
  */
 export const onKeyUp = ({ userMentionsProps, setUserMentionsProps }) => (event) => {
-  const { target } = event
+  const { key, target } = event
   const mention = getMention({ target })
 
-  if (mention === null) {
+  if (userMentionsProps && key === 'ArrowDown') {
+    // userMentions dialog is opened and user presses keyboard ArrowDown to move focus to users
+    setUserMentionsProps((userMentionsPropsPrev) => ({ ...userMentionsPropsPrev, itemFocusIndex: 0 }))
+  } else if (mention === null || key === 'Escape') {
     // close userMentions dialog
     setUserMentionsProps(null)
   } else if (userMentionsProps) {
@@ -66,6 +69,6 @@ export const onKeyUp = ({ userMentionsProps, setUserMentionsProps }) => (event) 
   } else if (!userMentionsProps) {
     // opening userMentions dialog for the first time: need to pass left, top coordinates and mention
     const { top, left } = DOMUtils.getCaretCoordinates(target, mention.indexStart)
-    setUserMentionsProps({ left: left - 10, top: top + 20, ...mention })
+    setUserMentionsProps({ left: left - 10, top: top + 20, itemFocusIndex: -1, ...mention })
   }
 }

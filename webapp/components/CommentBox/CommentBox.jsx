@@ -23,7 +23,9 @@ const CommentBox = () => {
           mention={userMentionsProps.mention}
           left={userMentionsProps.left}
           top={userMentionsProps.top}
+          itemFocusIndex={userMentionsProps.itemFocusIndex}
           onSelect={onSelectUser({ input: textareaRef.current, userMentionsProps, setUserMentionsProps })}
+          setUserMentionsProps={setUserMentionsProps}
         />
       )}
     </div>
