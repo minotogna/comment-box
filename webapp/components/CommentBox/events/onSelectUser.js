@@ -18,13 +18,15 @@ export const onSelectUser = ({ input, userMentionsProps, setUserMentionsProps })
   const { indexStart, indexEnd } = userMentionsProps
   const { value } = input
   const valueStart = value.substring(0, indexStart)
-  const valueEnd = value.substring(indexEnd)
+  const valueEnd = value.substring(indexEnd) || ' ' // add a space when selected user is last word
   const valueWithUsername = `${valueStart}${User.getUsername(user)}`
   // eslint-disable-next-line no-param-reassign
   input.value = `${valueWithUsername}${valueEnd}`
 
   // position caret at the end of selected user before re-focusing
   // eslint-disable-next-line no-param-reassign
-  input.selectionEnd = valueWithUsername.length
+  input.selectionStart = valueWithUsername.length + 1
+  // eslint-disable-next-line no-param-reassign
+  input.selectionEnd = valueWithUsername.length + 1
   input.focus()
 }

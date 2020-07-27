@@ -72,7 +72,7 @@ export const getCaretCoordinates = (input, selectionPoint) => {
   // position off-screen
   styleElementMirror.position = 'absolute' // required to return coordinates properly
   styleElementMirror.top = `${input.offsetTop + parseInt(styleElementInput.borderTopWidth, 10)}px`
-  styleElementMirror.left = '400px'
+  styleElementMirror.left = '0px'
   styleElementMirror.visibility = 'hidden' // not 'display: none' because we want rendering
 
   // transfer the element's properties to the div
