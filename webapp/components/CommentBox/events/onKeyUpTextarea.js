@@ -41,7 +41,7 @@ const getMention = ({ target }) => {
 }
 
 /**
- * Creates the onKeyUp event handler.
+ * Creates the onKeyUp textarea event handler.
  *
  * @param {object} params - Function params.
  * @param {{left: number, top: number, mention: string}} params.userMentionsProps - UserMentions props.
@@ -49,14 +49,14 @@ const getMention = ({ target }) => {
  *
  * @returns {Function} - Event handler.
  */
-export const onKeyUp = ({ userMentionsProps, setUserMentionsProps }) => (event) => {
+export const onKeyUpTextarea = ({ userMentionsProps, setUserMentionsProps }) => (event) => {
   const { key, target } = event
   const mention = getMention({ target })
 
   if (userMentionsProps && key === 'ArrowDown') {
-    // userMentions dialog is opened and user presses keyboard ArrowDown to move focus to users
+    // userMentions dialog is opened and user presses keyboard ArrowDown to move focus to userMentions dialog
     setUserMentionsProps((userMentionsPropsPrev) => ({ ...userMentionsPropsPrev, itemFocusIndex: 0 }))
-  } else if (mention === null || key === 'Escape') {
+  } else if (mention === null) {
     // close userMentions dialog
     setUserMentionsProps(null)
   } else if (userMentionsProps) {

@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react'
 
 import style from './CommentBox.scss'
-import { onKeyUp, onSelectUser } from './events'
+import { onKeyUpCommentBox, onKeyUpTextarea, onSelectUser } from './events'
 import UserMentions from './UserMentions'
 
 const CommentBox = () => {
@@ -10,12 +10,17 @@ const CommentBox = () => {
   const textareaRef = useRef(null)
 
   return (
-    <div className={style.commentBox}>
+    <div
+      className={style.commentBox}
+      role="textbox"
+      tabIndex={0}
+      onKeyUp={onKeyUpCommentBox({ userMentionsProps, setUserMentionsProps, input: textareaRef.current })}
+    >
       <textarea
         ref={textareaRef}
         className={style.textarea}
         placeholder="Leave a comment"
-        onKeyUp={onKeyUp({ userMentionsProps, setUserMentionsProps })}
+        onKeyUp={onKeyUpTextarea({ userMentionsProps, setUserMentionsProps })}
       />
 
       {userMentionsProps && (

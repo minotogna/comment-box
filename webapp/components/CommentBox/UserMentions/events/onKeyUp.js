@@ -13,9 +13,6 @@
 export const onKeyUp = ({ itemFocusIndex, setUserMentionsProps, numberUsers, numberUsersMax }) => (event) => {
   const { key } = event
 
-  // close userMentions dialog
-  if (key === 'Escape') setUserMentionsProps(null)
-
   let itemFocusIndexUpdated = null
   if (['ArrowDown', 'ArrowRight'].includes(key)) itemFocusIndexUpdated = itemFocusIndex + 1
   if (['ArrowUp', 'ArrowLeft'].includes(key)) itemFocusIndexUpdated = itemFocusIndex - 1
