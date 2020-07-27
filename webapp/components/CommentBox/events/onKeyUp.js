@@ -57,8 +57,12 @@ export const onKeyUp = ({ userMentionsProps, setUserMentionsProps }) => (event) 
     // close userMentions dialog
     setUserMentionsProps(null)
   } else if (userMentionsProps) {
-    // userMentions dialog already opened: need to pass the updated mention only
-    setUserMentionsProps((userMentionsPrev) => ({ ...userMentionsPrev, mention: mention.mention }))
+    // userMentions dialog already opened: need to pass the updated mention and indexEnd only
+    setUserMentionsProps((userMentionsPrev) => ({
+      ...userMentionsPrev,
+      mention: mention.mention,
+      indexEnd: mention.indexEnd,
+    }))
   } else if (!userMentionsProps) {
     // opening userMentions dialog for the first time: need to pass left, top coordinates and mention
     const { top, left } = DOMUtils.getCaretCoordinates(target, mention.indexStart)
