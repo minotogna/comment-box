@@ -53,9 +53,13 @@ const properties = [
  */
 export const getCaretCoordinates = (input, selectionPoint) => {
   // create a mirror element that will be a clone of the input
-  const elementMirror = document.createElement('div')
-  elementMirror.id = `${input.nodeName}--mirror-div`
-  document.body.appendChild(elementMirror)
+  const elementMirrorId = `${input.nodeName}--mirror-div`
+  let elementMirror = document.getElementById(elementMirrorId)
+  if (!elementMirror) {
+    elementMirror = document.createElement('div')
+    elementMirror.id = elementMirrorId
+    document.body.appendChild(elementMirror)
+  }
 
   // set mirror element style
   const styleElementMirror = elementMirror.style
