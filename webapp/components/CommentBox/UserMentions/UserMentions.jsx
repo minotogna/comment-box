@@ -29,6 +29,7 @@ const UserMentions = (props) => {
 
   return (
     <div
+      id="user-mentions"
       ref={userMentionsRef}
       className={style.userMentions}
       role="menuitem"
