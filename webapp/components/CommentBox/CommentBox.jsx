@@ -1,16 +1,29 @@
-import React, { useRef, useState } from 'react'
+import React, { useLayoutEffect, useRef, useState } from 'react'
 
 import style from './CommentBox.scss'
-import { onKeyUpCommentBox, onKeyUpTextarea, onSelectUser } from './events'
+import { onClickBody, onKeyUpCommentBox, onKeyUpTextarea, onSelectUser } from './events'
 import UserMentions from './UserMentions'
 
 const CommentBox = () => {
   const [userMentionsProps, setUserMentionsProps] = useState(null)
 
+  const commentBoxRef = useRef(null)
   const textareaRef = useRef(null)
+
+  // onMount add body onClick event listener.
+  useLayoutEffect(() => {
+    const onClick = onClickBody({ commentBox: commentBoxRef.current, setUserMentionsProps })
+    document.body.addEventListener('click', onClick)
+
+    // onUnmount remove body onClick event listener.
+    return () => {
+      document.body.removeEventListener('click', onClick)
+    }
+  }, [])
 
   return (
     <div
+      ref={commentBoxRef}
       className={style.commentBox}
       role="textbox"
       tabIndex={0}
