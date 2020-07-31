@@ -41,7 +41,8 @@ const getMention = ({ target }) => {
 }
 
 /**
- * Creates the onKeyUp textarea event handler.
+ * Creates the onKeyUp or onClick textarea event handler.
+ * Checks whether userMention dialog should be opened, updated, closed or focused.
  *
  * @param {object} params - Function params.
  * @param {{left: number, top: number, mention: string}} params.userMentionsProps - UserMentions props.
@@ -49,7 +50,7 @@ const getMention = ({ target }) => {
  *
  * @returns {Function} - Event handler.
  */
-export const onKeyUpTextarea = ({ userMentionsProps, setUserMentionsProps }) => (event) => {
+export const onKeyUpOrClickTextarea = ({ userMentionsProps, setUserMentionsProps }) => (event) => {
   const { key, target } = event
   const mention = getMention({ target })
 

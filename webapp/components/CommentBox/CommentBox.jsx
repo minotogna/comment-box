@@ -1,11 +1,12 @@
 import React, { useLayoutEffect, useRef, useState } from 'react'
 
 import style from './CommentBox.scss'
-import { onClickBody, onKeyUpCommentBox, onKeyUpTextarea, onSelectUser } from './events'
+import { onClickBody, onKeyUpCommentBox, onKeyUpOrClickTextarea, onSelectUser } from './events'
 import UserMentions from './UserMentions'
 
 const CommentBox = () => {
   const [userMentionsProps, setUserMentionsProps] = useState(null)
+  const onKeyUpOrClick = onKeyUpOrClickTextarea({ userMentionsProps, setUserMentionsProps })
 
   const commentBoxRef = useRef(null)
   const textareaRef = useRef(null)
@@ -33,7 +34,8 @@ const CommentBox = () => {
         ref={textareaRef}
         className={style.textarea}
         placeholder="Leave a comment"
-        onKeyUp={onKeyUpTextarea({ userMentionsProps, setUserMentionsProps })}
+        onKeyUp={onKeyUpOrClick}
+        onClick={onKeyUpOrClick}
       />
 
       {userMentionsProps && (

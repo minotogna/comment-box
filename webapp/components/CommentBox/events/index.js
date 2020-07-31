@@ -1,4 +1,4 @@
 export { onClickBody } from './onClickBody'
-export { onKeyUpTextarea } from './onKeyUpTextarea'
+export { onKeyUpOrClickTextarea } from './onKeyUpOrClickTextarea'
 export { onKeyUpCommentBox } from './onKeyUpCommentBox'
 export { onSelectUser } from './onSelectUser'
