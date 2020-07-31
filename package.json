@@ -12,7 +12,8 @@
     "build:watch": "webpack --display-error-details --watch",
     "start": "node server/bin/www",
     "start:watch": "nodemon server/bin/www",
-    "watch": "cross-env NODE_ENV=development DEBUG=react-express-starter:* npm-run-all --parallel build:watch start:watch"
+    "watch": "cross-env NODE_ENV=development DEBUG=react-express-starter:* npm-run-all --parallel build:watch start:watch",
+    "test": "jest --config test/jest.config.js"
   },
   "dependencies": {
     "cookie-parser": "^1.4.4",
@@ -55,13 +56,18 @@
     "eslint-plugin-react-hooks": "^4.0.8",
     "html-webpack-plugin": "^4.3.0",
     "husky": "^4.2.5",
+    "jest": "^26.2.2",
+    "jest-environment-node": "^26.2.0",
     "lint-staged": "^10.2.11",
     "mini-css-extract-plugin": "^0.9.0",
+    "mkdirp": "^1.0.4",
     "node-sass": "^4.14.1",
     "nodemon": "^2.0.4",
     "npm-run-all": "^4.1.5",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
     "prettier": "^2.0.5",
+    "puppeteer": "^5.2.1",
+    "rimraf": "^3.0.2",
     "sass-loader": "^9.0.2",
     "uglifyjs-webpack-plugin": "^2.2.0",
     "webpack": "^4.43.0",
@@ -75,6 +81,6 @@
     }
   },
   "lint-staged": {
-    "{webapp,server}/**/*.{js,jsx}": "eslint --cache --fix"
+    "{common,webapp,server,test}/**/*.{js,jsx}": "eslint --cache --fix"
   }
 }
